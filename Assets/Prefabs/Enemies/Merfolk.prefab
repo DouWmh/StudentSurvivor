@@ -1,0 +1,144 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8471958617259489518
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 938932966224251086, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: m_Name
+      value: Merfolk
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957782700119547195, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.6875
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957782700119547195, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.96875
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446764793485667376, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446764793485667376, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446764793485667376, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446764793485667376, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446764793485667376, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446764793485667376, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446764793485667376, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446764793485667376, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446764793485667376, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446764793485667376, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446764793485667376, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932576244315673283, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.6875
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932576244315673283, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.96875
+      objectReference: {fileID: 0}
+    - target: {fileID: 5061702059983302234, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.049
+      objectReference: {fileID: 0}
+    - target: {fileID: 5061702059983302234, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.626
+      objectReference: {fileID: 0}
+    - target: {fileID: 6316722397405337230, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1807895636, guid: 463fc710deb685747a9173317d1a2385, type: 3}
+    - target: {fileID: 6316722397405337230, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6316722397405337230, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6316722397405337230, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6316722397405337230, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8318586251581794958, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: MaxHP
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8318586251581794958, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: maxHP
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 8318586251581794958, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8318586251581794958, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: damage
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+--- !u!1 &8689048929557082144 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 938932966224251086, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+  m_PrefabInstance: {fileID: 8471958617259489518}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4986319421468204652
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8689048929557082144}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 70e77993ecdb3ba4ca3b7e96103c30f3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
