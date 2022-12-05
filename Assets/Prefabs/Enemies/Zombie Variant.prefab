@@ -68,6 +68,10 @@ PrefabInstance:
       value: 0.18276966
       objectReference: {fileID: 0}
     - target: {fileID: 9129425068121363768, guid: 1f933e4e967a76d4496d3c47d8718eec, type: 3}
+      propertyPath: _name
+      value: Zombie Elite
+      objectReference: {fileID: 0}
+    - target: {fileID: 9129425068121363768, guid: 1f933e4e967a76d4496d3c47d8718eec, type: 3}
       propertyPath: maxHP
       value: 48
       objectReference: {fileID: 0}

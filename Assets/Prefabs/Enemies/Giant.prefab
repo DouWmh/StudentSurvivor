@@ -246,6 +246,7 @@ MonoBehaviour:
   damage: 5
   speed: 1
   maxHP: 60
+  _name: Giant
   enemyHpBar: {fileID: 1434762105072856276}
   dmgText: {fileID: 4635057326998634013, guid: 77885728be842524ab8592e039005a38, type: 3}
   canvas: {fileID: 298124060768666614}

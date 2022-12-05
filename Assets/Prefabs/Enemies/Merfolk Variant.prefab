@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 496521201308701280, guid: 7baf9ccaf973da4488a1b52298995295, type: 3}
+      propertyPath: _name
+      value: Merman Elite
+      objectReference: {fileID: 0}
     - target: {fileID: 2466830153013456480, guid: 7baf9ccaf973da4488a1b52298995295, type: 3}
       propertyPath: m_Color.b
       value: 0.076130256

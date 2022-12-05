@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float maxHP;
     protected float currentHP;
+    [SerializeField] string _name;
 
     [Header("UI")]
     [SerializeField] HealthBar enemyHpBar;
@@ -180,6 +181,14 @@ public class Enemy : MonoBehaviour
 
     public void Dies()
     {
+        if (GameManager.Kills.ContainsKey(_name))
+        {
+            GameManager.Kills[_name]++;
+        }
+        else
+        {
+            GameManager.Kills.Add(_name, 1);
+        }
         playerScript.PlayRandomDeathSound();
         Destroy(enemyHpBar.gameObject);
         Destroy(gameObject);

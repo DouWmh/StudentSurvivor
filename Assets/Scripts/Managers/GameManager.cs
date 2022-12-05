@@ -17,10 +17,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject giant;
     [SerializeField] GameObject player;
     Player playerScript;
+    static bool MainPlayer = true;
     [SerializeField] PlayerCamera cam;
 
     [SerializeField] Canvas enemyHpCanvas;
     [SerializeField] float spawnDistance = 5f;
+    public static Dictionary<string, int> Kills = new Dictionary<string, int>();
+    public static Dictionary<string, int> Collected = new Dictionary<string, int>();
 
     [SerializeField] TMP_Text gameTimerText;
     [SerializeField] GameObject pauseScreen;
@@ -184,11 +187,6 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator SpawnEnemiesCoroutine()
     {
-        yield return new WaitForSeconds(2);
-        Spawn(giant, 3);
-        yield return new WaitForSeconds(50f);
-
-        //Spawn(boss, 1);
         for (int i = 0; i < 3; i++)
         {
             Spawn(zombie, 2);
@@ -207,6 +205,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(4);
             Spawn(zombie, 15, isChasing: false);
         }
+        
         yield return new WaitForSeconds(6f);
         // 1 minute
         Spawn(merfolk, 30, isChasing: false);

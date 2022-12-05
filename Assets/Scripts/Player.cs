@@ -268,7 +268,6 @@ public class Player : MonoBehaviour
                 StartCoroutine(cam.PlayerDeath());
             }
             playerHpBar.SetHealthDown(CurrentHp);
-            Debug.Log($"HP = {CurrentHp}");
             hpDisplay.text = $"{CurrentHp} / {maxHp}";
         }
     }
