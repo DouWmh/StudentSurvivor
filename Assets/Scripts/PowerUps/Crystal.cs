@@ -15,6 +15,14 @@ public class Crystal : MonoBehaviour
             player.PlayCrystalSound();
             player.AddExp();
             Destroy(gameObject);
+            if (GameManager.Collected.ContainsKey("Crystal"))
+            {
+                GameManager.Collected["Crystal"]++;
+            }
+            else
+            {
+                GameManager.Collected.Add("Crystal", 1);
+            }
         }
     }
     public void AttractToPlayer()

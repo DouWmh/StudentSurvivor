@@ -13,15 +13,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2466830153013456480, guid: 7baf9ccaf973da4488a1b52298995295, type: 3}
       propertyPath: m_Color.b
-      value: 0.076130256
+      value: 0.07450981
       objectReference: {fileID: 0}
     - target: {fileID: 2466830153013456480, guid: 7baf9ccaf973da4488a1b52298995295, type: 3}
       propertyPath: m_Color.g
-      value: 0.076130256
+      value: 0.07450981
       objectReference: {fileID: 0}
     - target: {fileID: 2466830153013456480, guid: 7baf9ccaf973da4488a1b52298995295, type: 3}
       propertyPath: m_Color.r
-      value: 0.8584906
+      value: 0.8588236
       objectReference: {fileID: 0}
     - target: {fileID: 6505220038717773022, guid: 7baf9ccaf973da4488a1b52298995295, type: 3}
       propertyPath: m_RootOrder
@@ -69,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8689048929557082144, guid: 7baf9ccaf973da4488a1b52298995295, type: 3}
       propertyPath: m_Name
-      value: Merfolk Variant
+      value: Merman Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7baf9ccaf973da4488a1b52298995295, type: 3}
