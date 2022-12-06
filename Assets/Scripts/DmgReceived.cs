@@ -5,10 +5,17 @@ using UnityEngine;
 
 public class DmgReceived : MonoBehaviour
 {
-    [SerializeField] TMP_Text dmg;
+    public TMP_Text dmg;
     [SerializeField] float speed;
     [SerializeField] Vector3 offset;
 
+    public void Update()
+    {
+        if (!gameObject.activeSelf)
+        {
+            dmg.text = "";
+        }
+    }
     public void DisplayDmg(float damage, GameObject enemyTakingDmg)
     {
         transform.position += offset;
@@ -16,7 +23,7 @@ public class DmgReceived : MonoBehaviour
     }
     IEnumerator DisplayDamage(float dmgTaken, GameObject enemyTakingDmg)
     {
-        dmg.text = $"{dmgTaken}";
+        dmg.text = dmgTaken.ToString();
         while (dmg.fontSize < 1)
         {
             transform.localScale = enemyTakingDmg.transform.localScale;

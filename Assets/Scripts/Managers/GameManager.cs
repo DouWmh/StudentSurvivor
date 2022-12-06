@@ -7,13 +7,13 @@ using UnityEngine.Rendering;
 public class GameManager : MonoBehaviour
 {
     [Header("Characters")]
-    [SerializeField] GameObject boss;
-    [SerializeField] GameObject merfolk;
-    [SerializeField] GameObject merfolkV;
-    [SerializeField] GameObject zombie;
-    [SerializeField] GameObject zombieV;
-    [SerializeField] GameObject rogue;
-    [SerializeField] GameObject rogueV;
+    //[SerializeField] GameObject boss;
+    //[SerializeField] GameObject merfolk;
+    //[SerializeField] GameObject merfolkV;
+    //[SerializeField] GameObject zombie;
+    //[SerializeField] GameObject zombieV;
+    //[SerializeField] GameObject rogue;
+    //[SerializeField] GameObject "Rogue Elite";
     [SerializeField] GameObject giant;
     [SerializeField] GameObject player;
     Player playerScript;
@@ -157,7 +157,7 @@ public class GameManager : MonoBehaviour
         seconds = 0;
         minutes = 0;
     }
-    public void Spawn(GameObject enemyToSpawn, int numEnemiesToSpawn, bool isChasing = true)
+    public void Spawn(string tag, int numEnemiesToSpawn, bool isChasing = true)
     {
         if (player != null)
         {
@@ -169,7 +169,7 @@ public class GameManager : MonoBehaviour
 
                 spawnPosition = UnityEngine.Random.insideUnitCircle.normalized * spawnDistance;
                 spawnPosition += player.transform.position;
-                GameObject go = Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity);
+                GameObject go = ObjectPooler.Instance.SpawnFromPool(tag, spawnPosition, Quaternion.identity);
                 Enemy enemy = go.GetComponent<Enemy>();
                 enemy.SetupHealthBar(enemyHpCanvas);
                 if (!isChasing)
@@ -189,132 +189,128 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            Spawn(zombie, 2);
-            Spawn(merfolk, 2);
+            Spawn("Zombie", 2);
+            Spawn("Merman", 2);
             yield return new WaitForSeconds(4);
-            Spawn(rogue, 3);
+            Spawn("Rogue", 3);
             yield return new WaitForSeconds(2);
-            Spawn(rogue, 10, isChasing: false);
+            Spawn("Rogue", 10, isChasing: false);
             yield return new WaitForSeconds(4);
-            Spawn(merfolk, 2);
-            Spawn(zombie, 2);
+            Spawn("Merman", 2);
+            Spawn("Zombie", 2);
             yield return new WaitForSeconds(4);
-            Spawn(rogue, 2);
-            Spawn(merfolk, 2);
-            Spawn(zombie, 4);
+            Spawn("Rogue", 2);
+            Spawn("Merman", 2);
+            Spawn("Zombie", 4);
             yield return new WaitForSeconds(4);
-            Spawn(zombie, 15, isChasing: false);
+            Spawn("Zombie", 15, isChasing: false);
         }
         
         yield return new WaitForSeconds(6f);
         // 1 minute
-        Spawn(merfolk, 30, isChasing: false);
+        Spawn("Merman", 30, isChasing: false);
         yield return new WaitForSeconds(6f);
         for (int i = 0; i < 2; i++)
         {
-            Spawn(merfolk, 6);
-            Spawn(rogue, 6);
-            Spawn(zombie, 6);
+            Spawn("Merman", 6);
+            Spawn("Rogue", 6);
+            Spawn("Zombie", 6);
             yield return new WaitForSeconds(3f);
-            Spawn(rogueV, 5, false);
+            Spawn("Rogue Elite", 5, false);
             yield return new WaitForSeconds(3f);
-            Spawn(merfolkV, 5, false);
+            Spawn("Merman Elite", 5, false);
             yield return new WaitForSeconds(3f);
-            Spawn(zombieV, 5, false);
+            Spawn("Zombie Elite", 5, false);
             yield return new WaitForSeconds(3f);
-            Spawn(merfolk, 5);
+            Spawn("Merman", 5);
             yield return new WaitForSeconds(3f);
-            Spawn(rogue, 6);
+            Spawn("Rogue", 6);
             yield return new WaitForSeconds(3f);
-            Spawn(zombie, 6);
+            Spawn("Zombie", 6);
             yield return new WaitForSeconds(3f);
-            Spawn(merfolk, 20);
+            Spawn("Merman", 20);
             yield return new WaitForSeconds(3f);
-            Spawn(rogue, 8, false);
-            Spawn(merfolk, 12, false);
+            Spawn("Rogue", 8, false);
+            Spawn("Merman", 12, false);
             yield return new WaitForSeconds(4f);
-            Spawn(rogueV, 12, false);
-            Spawn(merfolkV, 12, false);
+            Spawn("Rogue Elite", 12, false);
+            Spawn("Merman Elite", 12, false);
             yield return new WaitForSeconds(3f);
-            Spawn(zombie, 20);
+            Spawn("Zombie", 20);
             yield return new WaitForSeconds(8f);
-            Spawn(rogue, 6);
-            Spawn(merfolk, 6);
+            Spawn("Rogue", 6);
+            Spawn("Merman", 6);
             yield return new WaitForSeconds(3f);
         }
         //2minutes 30
         for (int i = 0; i < 3; i++)
         {
-            Spawn(zombieV, 3);
-            Spawn(merfolkV, 3);
+            Spawn("Zombie Elite", 3);
+            Spawn("Merman Elite", 3);
             yield return new WaitForSeconds(4);
-            Spawn(rogueV, 5);
+            Spawn("Rogue Elite", 5);
             yield return new WaitForSeconds(4);
-            Spawn(rogueV, 12, isChasing: false);
-            Spawn(zombieV, 12, isChasing: false);
+            Spawn("Rogue Elite", 12, isChasing: false);
+            Spawn("Zombie Elite", 12, isChasing: false);
             yield return new WaitForSeconds(6);
-            Spawn(merfolkV, 6);
-            Spawn(zombieV, 6);
+            Spawn("Merman Elite", 6);
+            Spawn("Zombie Elite", 6);
             yield return new WaitForSeconds(4);
-            Spawn(rogueV, 3);
-            Spawn(merfolkV, 3);
-            Spawn(zombieV, 3);
+            Spawn("Rogue Elite", 3);
+            Spawn("Merman Elite", 3);
+            Spawn("Zombie Elite", 3);
             yield return new WaitForSeconds(3);
-            Spawn(merfolkV, 15, isChasing: false);
+            Spawn("Merman Elite", 15, isChasing: false);
             yield return new WaitForSeconds(4);
         }
         //3 minutes 30
-        //Spawn(boss, 1);
-        Spawn(boss, 1);
-        //Time.timeScale = 0.25f;
-        //yield return new WaitForSecondsRealtime(2f);
-        //Time.timeScale = 1;
+       Spawn("Slime", 1);
         for (int i = 0; i < 3; i++)
         {
-            Spawn(merfolkV, 6);
-            Spawn(rogueV, 6);
-            Spawn(zombieV, 6);
+            Spawn("Merman Elite", 6);
+            Spawn("Rogue Elite", 6);
+            Spawn("Zombie Elite", 6);
             yield return new WaitForSeconds(4f);
-            Spawn(rogueV, 10, false);
+            Spawn("Rogue Elite", 10, false);
             yield return new WaitForSeconds(4f);
-            Spawn(merfolkV, 10, false);
+            Spawn("Merman Elite", 10, false);
             yield return new WaitForSeconds(4f);
-            Spawn(zombieV, 10, false);
+            Spawn("Zombie Elite", 10, false);
             yield return new WaitForSeconds(4f);
-            Spawn(merfolkV, 5);
+            Spawn("Merman Elite", 5);
             yield return new WaitForSeconds(4f);
-            Spawn(rogueV, 6);
+            Spawn("Rogue Elite", 6);
             yield return new WaitForSeconds(4f);
-            Spawn(zombieV, 6);
+            Spawn("Zombie Elite", 6);
             yield return new WaitForSeconds(3f);
-            Spawn(merfolkV, 20);
+            Spawn("Merman Elite", 20);
             yield return new WaitForSeconds(3f);
-            Spawn(rogueV, 8, false);
-            Spawn(merfolkV, 12, false);
+            Spawn("Rogue Elite", 8, false);
+            Spawn("Merman Elite", 12, false);
             yield return new WaitForSeconds(4f);
-            Spawn(rogueV, 20, false);
-            Spawn(merfolkV, 20, false);
+            Spawn("Rogue Elite", 20, false);
+            Spawn("Merman Elite", 20, false);
             yield return new WaitForSeconds(3f);
-            Spawn(zombieV, 20);
+            Spawn("Zombie Elite", 20);
             yield return new WaitForSeconds(7f);
-            Spawn(rogue, 6);
-            Spawn(merfolk, 6);
+            Spawn("Rogue", 6);
+            Spawn("Merman", 6);
             yield return new WaitForSeconds(5f);
         }
         //5 min 30
         while (true)
         {
             yield return new WaitForSeconds(4f);
-            Spawn(rogueV, 20, false);
-            Spawn(merfolkV, 20, false);
+            Spawn("Rogue Elite", 20, false);
+            Spawn("Merman Elite", 20, false);
             yield return new WaitForSeconds(5f);
-            Spawn(zombieV, 20, false);
-            Spawn(merfolkV, 20, false);
+            Spawn("Zombie Elite", 20, false);
+            Spawn("Merman Elite", 20, false);
             yield return new WaitForSeconds(5f);
-            Spawn(zombieV, 20);
+            Spawn("Zombie Elite", 20);
             yield return new WaitForSeconds(10f);
-            Spawn(rogueV, 6);
-            Spawn(merfolkV, 6);
+            Spawn("Rogue Elite", 6);
+            Spawn("Merman Elite", 6);
             yield return new WaitForSeconds(5f);
         }
     }

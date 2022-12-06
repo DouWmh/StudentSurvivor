@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IPooledObject
 {
     public enum Direction
     {
@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] HealthBar enemyHpBar;
     [SerializeField] GameObject dmgText;
     DmgReceived dmgReceivedScript;
+    GameObject dmgString;
     [SerializeField] Canvas canvas;
 
     [Header("Rewards")]
@@ -49,20 +50,26 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Awake()
     {
-        currentHP = maxHP;
-        enemyHpBar.SetMaxHealth(maxHP);
         player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
             playerScript = player.GetComponent<Player>();
-    }
-    protected virtual void Start()
-    {
         if (isBoss)
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
             fadeMat = spriteRenderer.material;
-            StartCoroutine(BossEncounter());
             fadeMat.SetFloat("_Fader", GetHPRatio());
+        }
+    }
+
+    public virtual void OnObjectSpawn()
+    {
+        currentHP = maxHP;
+        enemyHpBar.SetMaxHealth(maxHP);
+        gameObject.SetActive(true);
+
+        if (isBoss)
+        {
+            StartCoroutine(BossEncounter());
         }
     }
 
@@ -94,6 +101,10 @@ public class Enemy : MonoBehaviour
     }
     protected virtual void Update()
     {
+        if (!gameObject.activeSelf)
+        {
+            enemyHpBar.gameObject.SetActive(false);
+        }
         isInvulnerable = false;
         Movement();
     }
@@ -112,8 +123,10 @@ public class Enemy : MonoBehaviour
                 else if (!isBoss)
                 {
                     playerScript.OnDamage(damage);
-                    Destroy(enemyHpBar.gameObject);
-                    Destroy(gameObject);
+                    gameObject.SetActive(false);
+                    enemyHpBar.gameObject.SetActive(false);
+                    //Destroy(enemyHpBar.gameObject);
+                    //Destroy(gameObject);
                 }
             }
         }
@@ -143,13 +156,17 @@ public class Enemy : MonoBehaviour
     }
     public virtual void TakeDamage(float damage)
     {
-        if (!enemyHpBar.gameObject.activeSelf)
+        if (!enemyHpBar.gameObject.activeSelf && currentHP > 0)
             enemyHpBar.gameObject.SetActive(true);
         if (!isInvulnerable)
         {
             isInvulnerable = true;
             damage *= player.GetComponent<Player>().damageMultiplier;
             damage = Mathf.Floor(damage);
+            if (dmgString != null)
+            {
+                Destroy(dmgString);
+            }
             SpawnDamageText(damage);
             currentHP -= damage;
             enemyHpBar.SetHealthDown(currentHP);
@@ -166,10 +183,13 @@ public class Enemy : MonoBehaviour
 
     private void SpawnDamageText(float damage)
     {
-        GameObject go = Instantiate(dmgText, transform.position, Quaternion.identity, canvas.transform);
-        go.transform.localScale = transform.localScale;
-        dmgReceivedScript = go.GetComponent<DmgReceived>();
-        dmgReceivedScript.DisplayDmg(damage, gameObject);
+        if (gameObject.activeSelf)
+        {
+            dmgString = Instantiate(dmgText, transform.position, Quaternion.identity, canvas.transform);
+            dmgString.transform.localScale = transform.localScale;
+            dmgReceivedScript = dmgString.GetComponent<DmgReceived>();
+            dmgReceivedScript.DisplayDmg(damage, gameObject);
+        }
     }
 
     private void Enrage()
@@ -190,8 +210,10 @@ public class Enemy : MonoBehaviour
             GameManager.Kills.Add(_name, 1);
         }
         playerScript.PlayRandomDeathSound();
-        Destroy(enemyHpBar.gameObject);
-        Destroy(gameObject);
+        if (dmgString != null)
+            Destroy(dmgString);
+        enemyHpBar.gameObject.SetActive(false);
+        gameObject.SetActive(false);
         //Rewards Weight Ratio
         //
         int randomReward = Random.Range(0, 1000);

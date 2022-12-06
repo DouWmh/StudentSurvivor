@@ -22,13 +22,12 @@ public class Giant : Enemy
     protected override void Awake()
     {
         base.Awake();
+        animator = GetComponent<Animator>();
     }
     // Start is called before the first frame update
-    protected override void Start()
+    public override void OnObjectSpawn()
     {
-
-        base.Start();
-        animator = GetComponent<Animator>();
+        base.OnObjectSpawn();
     }
 
     // Update is called once per frame
