@@ -13,6 +13,14 @@ public class Coin : MonoBehaviour
             TitleManager.saveData.goldCoins++;
             playerScript.PlayCoinSound();
             Destroy(gameObject);
+            if (GameManager.Collected.ContainsKey("Coin"))
+            {
+                GameManager.Collected["Coin"]++;
+            }
+            else
+            {
+                GameManager.Collected.Add("Coin", 1);
+            }
         }
     }
 }
