@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class TitleManager : MonoBehaviour
 {
-
+    public static bool URPenabled = true;
     public static SavedData saveData;
     string SavePath => Path.Combine(Application.persistentDataPath, "save.data");
 
@@ -17,9 +17,18 @@ public class TitleManager : MonoBehaviour
     [SerializeField] TMP_Text coinsText;
     [SerializeField] TMP_Text atkLvlText;
     [SerializeField] TMP_Text hpLvlText;
+    [SerializeField] TMP_Text postProcText;
 
     private void Awake()
     {
+        if (URPenabled)
+        {
+            postProcText.text = "Post-Processing\nON";
+        }
+        else
+        {
+            postProcText.text = "Post-Processing\nOFF";
+        }
         if (saveData == null)
             Load();
         else
@@ -108,6 +117,18 @@ public class TitleManager : MonoBehaviour
     public void OnQuitUpgradeClick()
     {
         upgradeMenu.SetActive(false);
+    }
+    public void OnPostProcessingClick()
+    {
+        URPenabled = !URPenabled;
+        if (URPenabled)
+        {
+            postProcText.text = "Post-Processing\nON";
+        }
+        else
+        {
+            postProcText.text = "Post-Processing\nOFF";
+        }
     }
     private void RefreshTexts()
     {

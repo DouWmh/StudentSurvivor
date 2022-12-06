@@ -16,6 +16,7 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] float speed = 10f;
     Volume volume;
     Vignette vignette;
+    Bloom bloom;
     [SerializeField] float vignetteMagnitude = 0.5f;
     DepthOfField depth;
     ColorAdjustments colorAdjust;
@@ -26,14 +27,18 @@ public class PlayerCamera : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         volume = GetComponent<Volume>();
+
         volume.profile.TryGet(out vignette);
         volume.profile.TryGet(out depth);
         volume.profile.TryGet(out colorAdjust);
+        volume.profile.TryGet(out bloom);
+        bloom.active = TitleManager.URPenabled;
     }
     // Update is called once per frame
     void LateUpdate()
     {
-        vignette.intensity.Override((1 - player.GetHpRatio()) * vignetteMagnitude);
+        if (TitleManager.URPenabled)
+            vignette.intensity.Override((1 - player.GetHpRatio()) * vignetteMagnitude);
         if (target == null)
         {
             return;
@@ -47,7 +52,8 @@ public class PlayerCamera : MonoBehaviour
     }
     public void PauseGame()
     {
-        depth.active = true;
+        if (TitleManager.URPenabled)
+            depth.active = true;
     }
     public void UnPauseGame()
     {
@@ -75,11 +81,14 @@ public class PlayerCamera : MonoBehaviour
     {
         Time.timeScale = 0;
         float saturation = 0;
-        while (saturation > -100)
+        if (TitleManager.URPenabled)
         {
-            colorAdjust.saturation.Override(saturation);
-            saturation -= colorFadeSpeed * Time.unscaledDeltaTime;
-            yield return null;
+            while (saturation > -100)
+            {
+                colorAdjust.saturation.Override(saturation);
+                saturation -= colorFadeSpeed * Time.unscaledDeltaTime;
+                yield return null;
+            }
         }
         player.GetComponent<Player>().Death();
     }
