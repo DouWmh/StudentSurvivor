@@ -207,6 +207,8 @@ public class GameManager : MonoBehaviour
         }
         
         yield return new WaitForSeconds(6f);
+        Spawn("Giant", 6);
+        yield return new WaitForSeconds(6f);
         // 1 minute
         Spawn("Merman", 30, isChasing: false);
         yield return new WaitForSeconds(6f);
@@ -242,6 +244,7 @@ public class GameManager : MonoBehaviour
             Spawn("Merman", 6);
             yield return new WaitForSeconds(3f);
         }
+        Spawn("Giant", 10);
         //2minutes 30
         for (int i = 0; i < 3; i++)
         {
@@ -260,6 +263,7 @@ public class GameManager : MonoBehaviour
             Spawn("Merman Elite", 3);
             Spawn("Zombie Elite", 3);
             yield return new WaitForSeconds(3);
+            Spawn("Giant", 10);
             Spawn("Merman Elite", 15, isChasing: false);
             yield return new WaitForSeconds(4);
         }
@@ -297,6 +301,8 @@ public class GameManager : MonoBehaviour
             Spawn("Merman", 6);
             yield return new WaitForSeconds(5f);
         }
+        Spawn("Giant", 20);
+            yield return new WaitForSeconds(5f);
         //5 min 30
         while (true)
         {
@@ -312,6 +318,7 @@ public class GameManager : MonoBehaviour
             Spawn("Rogue Elite", 6);
             Spawn("Merman Elite", 6);
             yield return new WaitForSeconds(5f);
+            Spawn("Giant", 15);
         }
     }
 }
