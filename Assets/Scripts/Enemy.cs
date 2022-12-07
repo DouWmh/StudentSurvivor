@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour, IPooledObject
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
             fadeMat = spriteRenderer.material;
-            fadeMat.SetFloat("_Fader", GetHPRatio());
+            fadeMat.SetFloat("_Enrage", 0);
         }
     }
 
@@ -69,6 +69,8 @@ public class Enemy : MonoBehaviour, IPooledObject
 
         if (isBoss)
         {
+        fadeMat.SetFloat("_Fader", GetHPRatio());
+        fadeMat.SetFloat("_Enrage", 0);
             StartCoroutine(BossEncounter());
         }
     }
@@ -196,6 +198,7 @@ public class Enemy : MonoBehaviour, IPooledObject
 
     private void Enrage()
     {
+        fadeMat.SetFloat("_Enrage", 1);
         isEnraged = true;
         speed *= 2f;
         damage *= 1.75f;

@@ -70,6 +70,8 @@ public class Giant : Enemy
     }
     public override void TakeDamage(float damage)
     {
+        if (!gameObject.activeSelf)
+            return;
         if (giantState != GiantState.Berserk)
         {
             animator.Play("GiantIdle");
@@ -77,7 +79,7 @@ public class Giant : Enemy
             waitTimer = 2f;
         }
         base.TakeDamage(damage);
-        if (base.GetHPRatio() <= 0.5f && giantState != GiantState.Berserk)
+        if (base.GetHPRatio() <= 0.5f && giantState != GiantState.Berserk && gameObject.activeSelf)
         {
             giantState = GiantState.Berserk;
             StartCoroutine(Berserk());

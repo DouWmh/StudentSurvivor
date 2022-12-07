@@ -187,10 +187,12 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator SpawnEnemiesCoroutine()
     {
+        yield return new WaitForSeconds(2f);
         for (int i = 0; i < 3; i++)
         {
             Spawn("Zombie", 2);
             Spawn("Merman", 2);
+            Spawn("Giant", 1);
             yield return new WaitForSeconds(4);
             Spawn("Rogue", 3);
             yield return new WaitForSeconds(2);
@@ -205,7 +207,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(4);
             Spawn("Zombie", 15, isChasing: false);
         }
-        
+
         yield return new WaitForSeconds(6f);
         Spawn("Giant", 6);
         yield return new WaitForSeconds(6f);
@@ -245,6 +247,8 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(3f);
         }
         Spawn("Giant", 10);
+        yield return new WaitForSeconds(2f);
+        Spawn("Slime", 1);
         //2minutes 30
         for (int i = 0; i < 3; i++)
         {
@@ -268,7 +272,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(4);
         }
         //3 minutes 30
-       Spawn("Slime", 1);
+        //Spawn("Slime", 1);
         for (int i = 0; i < 3; i++)
         {
             Spawn("Merman Elite", 6);
@@ -302,7 +306,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(5f);
         }
         Spawn("Giant", 20);
-            yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(5f);
         //5 min 30
         while (true)
         {
