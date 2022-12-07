@@ -123,8 +123,10 @@ public class Enemy : MonoBehaviour, IPooledObject
                 else if (!isBoss)
                 {
                     playerScript.OnDamage(damage);
-                    gameObject.SetActive(false);
+                    if (dmgString != null)
+                        Destroy(dmgString);
                     enemyHpBar.gameObject.SetActive(false);
+                    gameObject.SetActive(false);
                     //Destroy(enemyHpBar.gameObject);
                     //Destroy(gameObject);
                 }
@@ -228,9 +230,9 @@ public class Enemy : MonoBehaviour, IPooledObject
         else if (randomReward < 90)
             Instantiate(coin, transform.position, Quaternion.identity);
         else if (randomReward < 1000)
-            Instantiate(crystal, transform.position, Quaternion.identity);
+            ObjectPooler.Instance.SpawnFromPool("Crystal", transform.position, Quaternion.identity);
         else
-            Instantiate(crystal, transform.position, Quaternion.identity);
+            ObjectPooler.Instance.SpawnFromPool("Crystal", transform.position, Quaternion.identity);
     }
     public void Movement()
     {

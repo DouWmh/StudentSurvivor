@@ -2,19 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Scythe : MonoBehaviour
+public class Scythe : MonoBehaviour, IPooledObject
 {
     [SerializeField] float damage;
     [SerializeField] float timerDestroy;
 
     public float Damage { get => damage; set => damage = value; }
 
+
     // Update is called once per frame
     void Update()
     {
-        timerDestroy -= Time.deltaTime;
-        if (timerDestroy <= 0)
-            Destroy(gameObject);
         transform.position += 5 * Time.deltaTime * transform.right;
     }
 
@@ -25,5 +23,10 @@ public class Scythe : MonoBehaviour
         {
             enemy.TakeDamage(damage);
         }
+    }
+
+    public void OnObjectSpawn()
+    {
+        gameObject.SetActive(true);
     }
 }
