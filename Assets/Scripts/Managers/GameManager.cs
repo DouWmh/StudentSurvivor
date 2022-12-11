@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
         if (TitleManager.currentPlayer == 2)
         {
             Destroy(mainCharacter);
-            player = secondCharacter;            
+            player = secondCharacter;
         }
         else
         {
@@ -94,7 +94,14 @@ public class GameManager : MonoBehaviour
 
 
         playerScript = player.GetComponent<Player>();
-        StartCoroutine(SpawnEnemiesCoroutine());
+        if (TitleManager.currentLevel == 2)
+        {
+            StartCoroutine(SpawnEnemiesCoroutineLevel2());
+        }
+        else
+        {
+            StartCoroutine(SpawnEnemiesCoroutineLevel1());
+        }
     }
     public void DisplayLevelUpOptions(List<int> rndOptions)
     {
@@ -198,7 +205,7 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    IEnumerator SpawnEnemiesCoroutine()
+    IEnumerator SpawnEnemiesCoroutineLevel1()
     {
         yield return new WaitForSeconds(2f);
         Spawn("Slime", 1);
@@ -262,7 +269,155 @@ public class GameManager : MonoBehaviour
         }
         Spawn("Giant", 10);
         yield return new WaitForSeconds(2f);
+
+        //2minutes 30
+        for (int i = 0; i < 3; i++)
+        {
+            Spawn("Zombie Elite", 3);
+            Spawn("Merman Elite", 3);
+            yield return new WaitForSeconds(4);
+            Spawn("Rogue Elite", 5);
+            yield return new WaitForSeconds(4);
+            Spawn("Rogue Elite", 12, isChasing: false);
+            Spawn("Zombie Elite", 12, isChasing: false);
+            yield return new WaitForSeconds(6);
+            Spawn("Merman Elite", 6);
+            Spawn("Zombie Elite", 6);
+            yield return new WaitForSeconds(4);
+            Spawn("Rogue Elite", 3);
+            Spawn("Merman Elite", 3);
+            Spawn("Zombie Elite", 3);
+            yield return new WaitForSeconds(3);
+            Spawn("Giant", 10);
+            Spawn("Merman Elite", 15, isChasing: false);
+            yield return new WaitForSeconds(4);
+        }
+        //Unlock level 2 here
+        //3 minutes 30
+        //Spawn("Slime", 1);
+        for (int i = 0; i < 3; i++)
+        {
+            Spawn("Merman Elite", 6);
+            Spawn("Rogue Elite", 6);
+            Spawn("Zombie Elite", 6);
+            yield return new WaitForSeconds(4f);
+            Spawn("Rogue Elite", 10, false);
+            yield return new WaitForSeconds(4f);
+            Spawn("Merman Elite", 10, false);
+            yield return new WaitForSeconds(4f);
+            Spawn("Zombie Elite", 10, false);
+            yield return new WaitForSeconds(4f);
+            Spawn("Merman Elite", 5);
+            yield return new WaitForSeconds(4f);
+            Spawn("Rogue Elite", 6);
+            yield return new WaitForSeconds(4f);
+            Spawn("Zombie Elite", 6);
+            yield return new WaitForSeconds(3f);
+            Spawn("Merman Elite", 20);
+            yield return new WaitForSeconds(3f);
+            Spawn("Rogue Elite", 8, false);
+            Spawn("Merman Elite", 12, false);
+            yield return new WaitForSeconds(4f);
+            Spawn("Rogue Elite", 20, false);
+            Spawn("Merman Elite", 20, false);
+            yield return new WaitForSeconds(3f);
+            Spawn("Zombie Elite", 20);
+            yield return new WaitForSeconds(7f);
+            Spawn("Rogue", 6);
+            Spawn("Merman", 6);
+            yield return new WaitForSeconds(5f);
+        }
+        Spawn("Giant", 20);
+        yield return new WaitForSeconds(5f);
+        //5 min 30
+        while (true)
+        {
+            yield return new WaitForSeconds(4f);
+            Spawn("Rogue Elite", 20, false);
+            Spawn("Merman Elite", 20, false);
+            yield return new WaitForSeconds(5f);
+            Spawn("Zombie Elite", 20, false);
+            Spawn("Merman Elite", 20, false);
+            yield return new WaitForSeconds(5f);
+            Spawn("Zombie Elite", 20);
+            yield return new WaitForSeconds(10f);
+            Spawn("Rogue Elite", 6);
+            Spawn("Merman Elite", 6);
+            yield return new WaitForSeconds(5f);
+            Spawn("Giant", 15);
+        }
+    }
+
+    IEnumerator SpawnEnemiesCoroutineLevel2()
+    {
+        yield return new WaitForSeconds(2f);
+        Spawn("Slime", 1);
+        for (int i = 0; i < 3; i++)
+        {
+            Spawn("Zombie", 10);
+            Spawn("Merman", 10);
+            Spawn("Giant", 2);
+            yield return new WaitForSeconds(4);
+            Spawn("Giant", 10);
+            yield return new WaitForSeconds(2);
+            Spawn("Zombie", 10, isChasing: false);
+            yield return new WaitForSeconds(4);
+            Spawn("Rogue", 6);
+            Spawn("Giant", 2);
+            yield return new WaitForSeconds(4);
+            Spawn("Rogue", 8);
+            Spawn("Merman", 8);
+            Spawn("Zombie", 8);
+            yield return new WaitForSeconds(4);
+            Spawn("Giant", 15, isChasing: false);
+        }
+
+        yield return new WaitForSeconds(3f);
+        Spawn("Giant", 8);
+        yield return new WaitForSeconds(3f);
+        Spawn("Zombie", 10);
+        yield return new WaitForSeconds(0.5f);
+        Spawn("Zombie", 15);
+        yield return new WaitForSeconds(0.5f);
+        Spawn("Zombie", 15);
+        yield return new WaitForSeconds(3f);
         
+        // 1 minute
+        Spawn("Merman", 10);
+        yield return new WaitForSeconds(6f);
+        for (int i = 0; i < 2; i++)
+        {
+            Spawn("Rogue", 6);
+            yield return new WaitForSeconds(1f);
+            Spawn("Rogue Elite", 15, false);
+            yield return new WaitForSeconds(1f);
+            Spawn("Merman Elite", 15, false);
+            yield return new WaitForSeconds(1f);
+            Spawn("Zombie Elite", 10, false);
+            yield return new WaitForSeconds(3f);
+            Spawn("Merman", 5);
+            yield return new WaitForSeconds(3f);
+            Spawn("Rogue", 6);
+            yield return new WaitForSeconds(3f);
+            Spawn("Merman Elite", 6);
+            yield return new WaitForSeconds(3f);
+            Spawn("Merman", 30);
+            yield return new WaitForSeconds(3f);
+            Spawn("Rogue", 8, false);
+            Spawn("Merman", 12, false);
+            yield return new WaitForSeconds(4f);
+            Spawn("Rogue Elite", 12, false);
+            Spawn("Merman Elite", 12, false);
+            yield return new WaitForSeconds(3f);
+            Spawn("Zombie", 30);
+            yield return new WaitForSeconds(8f);
+            Spawn("Rogue", 8);
+            Spawn("Merman", 8);
+            yield return new WaitForSeconds(3f);
+        }
+        Spawn("Giant", 10);
+        yield return new WaitForSeconds(2f);
+
         //2minutes 30
         for (int i = 0; i < 3; i++)
         {
@@ -340,3 +495,4 @@ public class GameManager : MonoBehaviour
         }
     }
 }
+

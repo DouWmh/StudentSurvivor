@@ -19,7 +19,7 @@ public class GameOverManager : MonoBehaviour
 
     public void OnContinueBtnClick()
     {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene(TitleManager.currentLevel);
     }
     public void OnQuitBtnClick()
     {
