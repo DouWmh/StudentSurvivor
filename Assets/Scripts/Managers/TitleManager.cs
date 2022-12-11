@@ -9,8 +9,8 @@ using UnityEngine.SceneManagement;
 
 public class TitleManager : MonoBehaviour
 {
-    public static bool IsEdgeUnlocked = false;
-    public static int currentPlayer = 2;//1 Julius  2 Edge
+    public static int currentPlayer = 1;//1 Julius  2 Edge
+    public static int currentLevel = 1;
     public static bool URPenabled = true;
     public static SavedData saveData;
     string SavePath => Path.Combine(Application.persistentDataPath, "save.data");
@@ -37,7 +37,6 @@ public class TitleManager : MonoBehaviour
         else
             Save();
         Debug.Log($"Deaths : {saveData.deathCount} Gold : {saveData.goldCoins}");
-        IsEdgeUnlocked = saveData.edgeUnlocked;
     }
 
     private void Save()
@@ -136,21 +135,20 @@ public class TitleManager : MonoBehaviour
         {
             saveData.goldCoins -= 10;
             saveData.edgeUnlocked = true;
-            IsEdgeUnlocked = true;
             RefreshTexts();
         }
     }
     public void OnJuliusClick()
     {
         TitleManager.currentPlayer = 1;
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene(currentLevel);
     }
     public void OnEdgeClick()
     {
-        if (IsEdgeUnlocked)
+        if (saveData.edgeUnlocked)
         {
             TitleManager.currentPlayer = 2;
-            SceneManager.LoadScene("Game");
+            SceneManager.LoadScene(currentLevel);
         }
     }
     private void RefreshTexts()
