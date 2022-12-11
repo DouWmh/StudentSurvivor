@@ -13,9 +13,11 @@ public class GameManager : MonoBehaviour
     //[SerializeField] GameObject zombie;
     //[SerializeField] GameObject zombieV;
     //[SerializeField] GameObject rogue;
-    //[SerializeField] GameObject "Rogue Elite";
-    [SerializeField] GameObject giant;
-    [SerializeField] GameObject player;
+    ////[SerializeField] GameObject "Rogue Elite";
+    //[SerializeField] GameObject giant;
+    [SerializeField] GameObject mainCharacter;
+    [SerializeField] GameObject secondCharacter;
+    public static GameObject player;
     Player playerScript;
     static bool MainPlayer = true;
     [SerializeField] PlayerCamera cam;
@@ -47,8 +49,21 @@ public class GameManager : MonoBehaviour
     public static bool isPaused = false;
     public static bool isLeveling = false;
 
-    void Start()
+    void Awake()
     {
+        if (TitleManager.currentPlayer == 2)
+        {
+            Destroy(mainCharacter);
+            player = secondCharacter;            
+        }
+        else
+        {
+            Destroy(secondCharacter);
+            player = mainCharacter;
+        }
+        player.gameObject.SetActive(true);
+        if (TitleManager.saveData == null)
+            TitleManager.saveData = new SavedData();
         //sounds = player.GetComponents<AudioSource>();
         if (lvlUpOptions.Count == 0)
         {
@@ -78,8 +93,6 @@ public class GameManager : MonoBehaviour
         }
 
 
-        if (TitleManager.saveData == null)
-            TitleManager.saveData = new SavedData();
         playerScript = player.GetComponent<Player>();
         StartCoroutine(SpawnEnemiesCoroutine());
     }
@@ -188,6 +201,7 @@ public class GameManager : MonoBehaviour
     IEnumerator SpawnEnemiesCoroutine()
     {
         yield return new WaitForSeconds(2f);
+        Spawn("Slime", 1);
         for (int i = 0; i < 3; i++)
         {
             Spawn("Zombie", 2);
@@ -248,7 +262,7 @@ public class GameManager : MonoBehaviour
         }
         Spawn("Giant", 10);
         yield return new WaitForSeconds(2f);
-        Spawn("Slime", 1);
+        
         //2minutes 30
         for (int i = 0; i < 3; i++)
         {

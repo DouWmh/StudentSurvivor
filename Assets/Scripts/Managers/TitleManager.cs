@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class TitleManager : MonoBehaviour
 {
+    public static int currentPlayer = 2;//1 Julius  2 Edge
     public static bool URPenabled = true;
     public static SavedData saveData;
     string SavePath => Path.Combine(Application.persistentDataPath, "save.data");
@@ -47,7 +48,7 @@ public class TitleManager : MonoBehaviour
             }
 
             file = File.Create(SavePath);
-            var bf = new BinaryFormatter();
+            BinaryFormatter bf = new();
             bf.Serialize(file, saveData);
         }
         catch (Exception e)
@@ -121,14 +122,8 @@ public class TitleManager : MonoBehaviour
     public void OnPostProcessingClick()
     {
         URPenabled = !URPenabled;
-        if (URPenabled)
-        {
-            postProcText.text = "Post-Processing\nON";
-        }
-        else
-        {
-            postProcText.text = "Post-Processing\nOFF";
-        }
+        postProcText.text = "Post-Processing\n" + (URPenabled ? "ON" : "OFF");
+
     }
     private void RefreshTexts()
     {

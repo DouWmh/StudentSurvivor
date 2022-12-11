@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 5153
+  controlID: 7447
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 5154
+  controlID: 7425
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 5155
+  controlID: 7426
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -224,9 +224,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: f83cfaffb83cfaff783cfaff383cfafff83bfaffb83bfaff783bfaff383bfafff83afaffb83afaff783afaff383afafff839faffb839faff7839faff3839fafff838faffb838faff7838faff3838fafff837faffb837faff7837faff3837fafff836faffb836faff7836faff3836fafff835faffb835faff7835faff3835fafff834faffb834faff7834faff3834fafff833faffb833faff7833faff3833fafff832faffb832faff7832faff3832fafff831faffb831faff7831faff3831fafff830faffb830faff7830faff3830fafff82ffaffb82ffaff782ffaff382ffafff82efaffb82efaff782efaff382efafff82dfaffb82dfaff782dfaff382dfafff82cfaffb82cfaff782cfaff382cfafff82bfaffb82bfaff782bfaff382bfafff82afaffb82afaff782afaff382afafff829faffb829faff7829faff3829fafff828faffb828faff7828faff3828fafff827faffb827faff7827faff3827fafff826faffb826faff7826faff3826fafff825faffb825faff7825faff3825fafff824faffb824faff7824faff3824faff
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 2e3ffbff2afbffff
+      m_ExpandedIDs: 7cd6f5ff1a67f6ff6668f6ff6255f7ff4243f8ffac45f8ff12d0f8ffdebcf9ff6472faff6a62fbff14eefbffbad8fcff38dbfcff1ad3fdfff6d3fdffe65bfeffd6e3feff9e6bffff2afbffff6e3505009a62070030bf0700
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -558,9 +558,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 318.3289, y: 199.85785, z: 2.204491}
+    m_Target: {x: 0.24444146, y: 5.2967515, z: -0.019026592}
     speed: 2
-    m_Value: {x: 318.3289, y: 199.85785, z: 2.204491}
+    m_Value: {x: 0.24444146, y: 5.2967515, z: -0.019026592}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -611,9 +611,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 326.68137
+    m_Target: 13.254691
     speed: 2
-    m_Value: 326.68137
+    m_Value: 13.254691
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -755,9 +755,9 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 70e77993ecdb3ba4ca3b7e96103c30f3, type: 2}
+  m_AnimatorController: {fileID: 9100000, guid: 9453e2477316fc2468d1127bfdd2f4ea, type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: -1919723157949485065, guid: 70e77993ecdb3ba4ca3b7e96103c30f3, type: 2}
+  - m_Target: {fileID: -5069227897753560125, guid: 9453e2477316fc2468d1127bfdd2f4ea, type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}
@@ -780,7 +780,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
+  m_Name: ProjectBrowser
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -789,14 +789,14 @@ MonoBehaviour:
     y: 502.4
     width: 1172.8
     height: 228.4
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 12}
+  m_MinSize: {x: 230, y: 250}
+  m_MaxSize: {x: 10000, y: 10000}
+  m_ActualView: {fileID: 11}
   m_Panes:
   - {fileID: 11}
   - {fileID: 12}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -838,22 +838,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/Enemies
+    - Assets/Scenes
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs/Enemies
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\doom2\OneDrive\Bureau\Game Engine 1\GitHub\StudentSurvivor
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 56d00000
-    m_LastClickedID: 53334
-    m_ExpandedIDs: 00000000bacf0000
+    scrollPos: {x: 0, y: 40.600006}
+    m_SelectedIDs: eecf0000
+    m_LastClickedID: 53230
+    m_ExpandedIDs: 00000000e2cf0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -881,7 +881,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000bacf0000
+    m_ExpandedIDs: 00000000e2cf0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -906,8 +906,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: 42d00000
+    m_LastClickedInstanceID: 53314
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000fae40000
     m_RenameOverlay:
@@ -984,8 +984,8 @@ MonoBehaviour:
     y: 0
     width: 363.19995
     height: 730.8
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -1019,16 +1019,17 @@ MonoBehaviour:
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
     m_SaveData: []
-  m_ObjectsLockedBeforeSerialization: []
+  m_ObjectsLockedBeforeSerialization:
+  - {fileID: 11500000, guid: ae7dd8f643e0d014c980708d840b8144, type: 3}
   m_InstanceIDsLockedBeforeSerialization: 
   m_PreviewResizer:
     m_CachedPref: 160
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: -1
+  m_LastInspectedObjectInstanceID: 7152
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
-    m_IsLocked: 0
+    m_IsLocked: 1
   m_PreviewWindow: {fileID: 0}

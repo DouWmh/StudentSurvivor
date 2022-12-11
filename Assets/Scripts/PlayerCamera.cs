@@ -6,13 +6,16 @@ using UnityEngine.Rendering.Universal;
 
 public class PlayerCamera : MonoBehaviour
 {
+    [SerializeField] GameObject character1;
+    [SerializeField] GameObject character2;
+    GameObject player;
     public GameObject target;
     [SerializeField] float shakeTime;
     [SerializeField] float shakeMagnitude;
     private Vector3 shakeOffset;
     private bool isShaking = false;
 
-    Player player;
+    Player playerScript;
     [SerializeField] float speed = 10f;
     Volume volume;
     Vignette vignette;
@@ -23,9 +26,21 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] float colorFadeSpeed;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        if (TitleManager.currentPlayer == 2)
+        {
+            player = character2;
+            target = player;
+        }
+        else
+        {
+            player = character1;
+            target = player;
+        }
+        if (!target)
+            target = GameObject.FindGameObjectWithTag("Player");
+        playerScript = player.GetComponent<Player>();
         volume = GetComponent<Volume>();
 
         volume.profile.TryGet(out vignette);
@@ -38,7 +53,7 @@ public class PlayerCamera : MonoBehaviour
     void LateUpdate()
     {
         if (TitleManager.URPenabled)
-            vignette.intensity.Override((1 - player.GetHpRatio()) * vignetteMagnitude);
+            vignette.intensity.Override((1 - playerScript.GetHpRatio()) * vignetteMagnitude);
         if (target == null)
         {
             return;
@@ -90,6 +105,6 @@ public class PlayerCamera : MonoBehaviour
                 yield return null;
             }
         }
-        player.GetComponent<Player>().Death();
+        playerScript.GetComponent<Player>().Death();
     }
 }

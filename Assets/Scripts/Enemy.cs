@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour, IPooledObject
 
     protected virtual void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameManager.player;
         if (player != null)
             playerScript = player.GetComponent<Player>();
         if (isBoss)
@@ -69,8 +69,8 @@ public class Enemy : MonoBehaviour, IPooledObject
 
         if (isBoss)
         {
-        fadeMat.SetFloat("_Fader", GetHPRatio());
-        fadeMat.SetFloat("_Enrage", 0);
+            fadeMat.SetFloat("_Fader", GetHPRatio());
+            fadeMat.SetFloat("_Enrage", 0);
             StartCoroutine(BossEncounter());
         }
     }

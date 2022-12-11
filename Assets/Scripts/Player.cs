@@ -220,18 +220,36 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
     }
-    private void Start()
+    private void Awake()
     {
         starParticle = GetComponent<ParticleSystem>();
         starParticle.Stop();
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
         flashMat = spriteRenderer.material;
+        if (TitleManager.currentPlayer == 2)
+        {
+            wpnLvls = new int[4] { 0, 0, 1, 0 };
+        }
+        else
+        {
+            wpnLvls = new int[4] { 1, 0, 0, 0 };
+        }
+
+    }
+    private void Start()
+    {
         damageMultiplier += (float)TitleManager.saveData.permAtkLvl / 10;
-        weapons[0].LevelUp();
-        wpnLvls = new int[4] { 1, 0, 0, 0 };
-        UpdateUIWeaponsLvl();
         maxHp += TitleManager.saveData.permHpLvl * 2;
+        if (TitleManager.currentPlayer == 2)
+        {
+            weapons[2].LevelUp();
+        }
+        else
+        {
+            weapons[0].LevelUp();
+        }
+        UpdateUIWeaponsLvl();
         CurrentHp = maxHp;
         animator = GetComponent<Animator>();
         playerHpBar.SetMaxHealth(maxHp);
