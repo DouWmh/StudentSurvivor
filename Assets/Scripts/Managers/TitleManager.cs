@@ -9,12 +9,14 @@ using UnityEngine.SceneManagement;
 
 public class TitleManager : MonoBehaviour
 {
+    public static bool IsEdgeUnlocked = false;
     public static int currentPlayer = 2;//1 Julius  2 Edge
     public static bool URPenabled = true;
     public static SavedData saveData;
     string SavePath => Path.Combine(Application.persistentDataPath, "save.data");
 
     [SerializeField] GameObject upgradeMenu;
+    [SerializeField] GameObject charSelMenu;
     [SerializeField] TMP_Text coinsText;
     [SerializeField] TMP_Text atkLvlText;
     [SerializeField] TMP_Text hpLvlText;
@@ -35,6 +37,7 @@ public class TitleManager : MonoBehaviour
         else
             Save();
         Debug.Log($"Deaths : {saveData.deathCount} Gold : {saveData.goldCoins}");
+        IsEdgeUnlocked = saveData.edgeUnlocked;
     }
 
     private void Save()
@@ -82,10 +85,13 @@ public class TitleManager : MonoBehaviour
                 file.Close();
         }
     }
-
+    private void SelectCharacter()
+    {
+        charSelMenu.SetActive(true);
+    }
     public void OnStartBtnClick()
     {
-        SceneManager.LoadScene("Game");
+        SelectCharacter();
     }
     public void OnUpgradeBtnClick()
     {
@@ -123,7 +129,29 @@ public class TitleManager : MonoBehaviour
     {
         URPenabled = !URPenabled;
         postProcText.text = "Post-Processing\n" + (URPenabled ? "ON" : "OFF");
-
+    }
+    public void OnUnlockEdgeClick()
+    {
+        if (saveData.goldCoins >= 10 && saveData.edgeUnlocked == false)
+        {
+            saveData.goldCoins -= 10;
+            saveData.edgeUnlocked = true;
+            IsEdgeUnlocked = true;
+            RefreshTexts();
+        }
+    }
+    public void OnJuliusClick()
+    {
+        TitleManager.currentPlayer = 1;
+        SceneManager.LoadScene("Game");
+    }
+    public void OnEdgeClick()
+    {
+        if (IsEdgeUnlocked)
+        {
+            TitleManager.currentPlayer = 2;
+            SceneManager.LoadScene("Game");
+        }
     }
     private void RefreshTexts()
     {

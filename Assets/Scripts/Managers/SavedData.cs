@@ -14,4 +14,6 @@ public class SavedData
     public int permAtkLvl;
 
     public int permHpLvl;
+
+    public bool edgeUnlocked;
 }
