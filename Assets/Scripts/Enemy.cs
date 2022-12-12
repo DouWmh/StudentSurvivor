@@ -213,6 +213,7 @@ public class Enemy : MonoBehaviour, IPooledObject
         {
             animator.SetTrigger("SpecialAtk");
             yield return new WaitForSeconds(enrageCooldown);
+            //yield return new WaitForSeconds(enrageCooldown / 2);
         }
     }
     public void ThrowFireBall()
