@@ -12,7 +12,7 @@ public class XpBar : MonoBehaviour
     private void Start()
     {
         if (!player.gameObject.activeInHierarchy)
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            player = GameManager.player.GetComponent<Player>();
         player.OnExpGained += OnExpGain;
         OnExpGain(0, 1);
     }

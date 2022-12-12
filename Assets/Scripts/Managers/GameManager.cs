@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,14 +8,6 @@ using UnityEngine.Rendering;
 public class GameManager : MonoBehaviour
 {
     [Header("Characters")]
-    //[SerializeField] GameObject boss;
-    //[SerializeField] GameObject merfolk;
-    //[SerializeField] GameObject merfolkV;
-    //[SerializeField] GameObject zombie;
-    //[SerializeField] GameObject zombieV;
-    //[SerializeField] GameObject rogue;
-    ////[SerializeField] GameObject "Rogue Elite";
-    //[SerializeField] GameObject giant;
     [SerializeField] GameObject mainCharacter;
     [SerializeField] GameObject secondCharacter;
     public static GameObject player;
@@ -29,6 +22,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] TMP_Text gameTimerText;
     [SerializeField] GameObject pauseScreen;
+    [SerializeField] float flashSpeed = 1f;
 
     [Header("LevelUp Menu")]
     [SerializeField] GameObject lvlUpMenu;
@@ -40,6 +34,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text lvlDescription2;
     [SerializeField] TMP_Text lvlDescription3;
     [SerializeField] TMP_Text lvlDescription4;
+    [SerializeField] TMP_Text lvlUnlockText;
 
     public Dictionary<string, string> lvlUpDescription = new();
     public List<string> lvlUpOptions = new();
@@ -91,8 +86,6 @@ public class GameManager : MonoBehaviour
             lvlUpDescription.Add(lvlUpOptions[9], "Upgrades your raw Hit Points");
             lvlUpDescription.Add(lvlUpOptions[10], "Become Invincible for 5 Seconds");
         }
-
-
         playerScript = player.GetComponent<Player>();
         if (TitleManager.currentLevel == 2)
         {
@@ -102,6 +95,11 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(SpawnEnemiesCoroutineLevel1());
         }
+    }
+    private void Start()
+    {
+        if (lvlUnlockText != null)
+            lvlUnlockText.gameObject.SetActive(false);
     }
     public void DisplayLevelUpOptions(List<int> rndOptions)
     {
@@ -184,7 +182,6 @@ public class GameManager : MonoBehaviour
             Vector3 spawnPosition;
             for (int i = 0; i < numEnemiesToSpawn; i++)
             {
-
                 Vector3 barOffset = new Vector3(0, 1f, 0);
 
                 spawnPosition = UnityEngine.Random.insideUnitCircle.normalized * spawnDistance;
@@ -230,7 +227,14 @@ public class GameManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(6f);
+
+
         Spawn("Giant", 6);
+
+        if (!TitleManager.saveData.levelUnlocked)
+        {
+            StageUnlock();            
+        }
         yield return new WaitForSeconds(6f);
         // 1 minute
         Spawn("Merman", 30, isChasing: false);
@@ -292,9 +296,10 @@ public class GameManager : MonoBehaviour
             Spawn("Merman Elite", 15, isChasing: false);
             yield return new WaitForSeconds(4);
         }
-        //Unlock level 2 here
+
         //3 minutes 30
-        //Spawn("Slime", 1);
+        yield return new WaitForSeconds(8f);
+        Spawn("Slime", 1);
         for (int i = 0; i < 3; i++)
         {
             Spawn("Merman Elite", 6);
@@ -348,10 +353,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void StageUnlock()
+    {
+        StartCoroutine(FlashUnlocked());
+    }
+
     IEnumerator SpawnEnemiesCoroutineLevel2()
     {
         yield return new WaitForSeconds(2f);
-        Spawn("Slime", 1);
+        //Spawn("Slime", 1);
         for (int i = 0; i < 3; i++)
         {
             Spawn("Zombie", 10);
@@ -381,7 +391,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         Spawn("Zombie", 15);
         yield return new WaitForSeconds(3f);
-        
+
         // 1 minute
         Spawn("Merman", 10);
         yield return new WaitForSeconds(6f);
@@ -493,6 +503,18 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(5f);
             Spawn("Giant", 15);
         }
+    }
+    IEnumerator FlashUnlocked()
+    {
+        lvlUnlockText.gameObject.SetActive(true);
+        for (int i = 0; i < 5; i++)
+        {
+            lvlUnlockText.CrossFadeAlpha(1f, flashSpeed, false);
+            yield return new WaitForSeconds(flashSpeed);
+            lvlUnlockText.CrossFadeAlpha(0f, flashSpeed, false);
+            yield return new WaitForSeconds(flashSpeed);
+        }
+        TitleManager.saveData.levelUnlocked = true;
     }
 }
 

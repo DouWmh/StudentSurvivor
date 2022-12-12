@@ -265,7 +265,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8318586251581794958, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
       propertyPath: maxHP
-      value: 5000
+      value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 8318586251581794958, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
       propertyPath: speed
@@ -273,7 +273,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8318586251581794958, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
       propertyPath: damage
-      value: 12
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8318586251581794958, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
       propertyPath: isBoss
@@ -295,6 +295,14 @@ PrefabInstance:
       propertyPath: zoomNumber
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8318586251581794958, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: enrageCooldown
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8318586251581794958, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: fireBallPrefab
+      value: 
+      objectReference: {fileID: 7733246529420847712, guid: b84eb3d6d0009024c89cf1d3dbd13c50, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
 --- !u!1 &5839250738456078750 stripped

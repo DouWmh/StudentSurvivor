@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TitleManager : MonoBehaviour
 {
@@ -17,10 +18,13 @@ public class TitleManager : MonoBehaviour
 
     [SerializeField] GameObject upgradeMenu;
     [SerializeField] GameObject charSelMenu;
+    [SerializeField] GameObject lvlSelMenu;
     [SerializeField] TMP_Text coinsText;
     [SerializeField] TMP_Text atkLvlText;
     [SerializeField] TMP_Text hpLvlText;
     [SerializeField] TMP_Text postProcText;
+    [SerializeField] GameObject lockImage;
+    [SerializeField] GameObject lockImage2;
 
     private void Awake()
     {
@@ -36,9 +40,8 @@ public class TitleManager : MonoBehaviour
             Load();
         else
             Save();
-        Debug.Log($"Deaths : {saveData.deathCount} Gold : {saveData.goldCoins}");
+        Debug.Log($"Deaths : {saveData.deathCount} Gold : {saveData.goldCoins} Edge {saveData.edgeUnlocked} Forest {saveData.levelUnlocked}");
     }
-
     private void Save()
     {
         FileStream file = null;
@@ -86,6 +89,7 @@ public class TitleManager : MonoBehaviour
     }
     private void SelectCharacter()
     {
+        lockImage2.SetActive(!saveData.edgeUnlocked);
         charSelMenu.SetActive(true);
     }
     public void OnStartBtnClick()
@@ -96,6 +100,7 @@ public class TitleManager : MonoBehaviour
     {
 
         upgradeMenu.SetActive(true);
+        lockImage.SetActive(!saveData.edgeUnlocked);
         RefreshTexts();
     }
     public void OnQuitBtnClick()
@@ -120,9 +125,11 @@ public class TitleManager : MonoBehaviour
             RefreshTexts();
         }
     }
-    public void OnQuitUpgradeClick()
+    public void OnReturnToMenuClick()
     {
         upgradeMenu.SetActive(false);
+        charSelMenu.SetActive(false);
+        lvlSelMenu.SetActive(false);
     }
     public void OnPostProcessingClick()
     {
@@ -135,27 +142,50 @@ public class TitleManager : MonoBehaviour
         {
             saveData.goldCoins -= 10;
             saveData.edgeUnlocked = true;
+            Save();
+            lockImage.SetActive(!saveData.edgeUnlocked);
             RefreshTexts();
         }
     }
     public void OnJuliusClick()
     {
         TitleManager.currentPlayer = 1;
-        SceneManager.LoadScene(currentLevel);
+        CheckLevelSelection();
     }
+
+    private void CheckLevelSelection()
+    {
+        if (!saveData.levelUnlocked)
+            SceneManager.LoadScene(currentLevel);
+        else
+        {
+            charSelMenu.SetActive(false);
+            lvlSelMenu.SetActive(true);
+        }
+    }
+
     public void OnEdgeClick()
     {
         if (saveData.edgeUnlocked)
         {
             TitleManager.currentPlayer = 2;
-            SceneManager.LoadScene(currentLevel);
+            CheckLevelSelection();
         }
+    }
+    public void OnPlainClick()
+    {
+        currentLevel = 1;
+        SceneManager.LoadScene(currentLevel);
+    }
+    public void OnForestClick()
+    {
+        currentLevel = 2;
+        SceneManager.LoadScene(currentLevel);
     }
     private void RefreshTexts()
     {
         coinsText.text = $"Coins : {saveData.goldCoins}";
         atkLvlText.text = $"Lv. {saveData.permAtkLvl}";
         hpLvlText.text = $"Lv. {saveData.permHpLvl}";
-
     }
 }

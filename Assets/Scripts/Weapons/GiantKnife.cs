@@ -10,9 +10,9 @@ public class GiantKnife : MonoBehaviour
     Vector3 trajectory;
     GameObject player;
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameManager.player;
         Vector3 destination = player.transform.position;
         Vector3 source = transform.position;
         trajectory = destination - source;
@@ -22,7 +22,7 @@ public class GiantKnife : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         transform.position += trajectory * speed * Time.deltaTime;
         timerDestroy -= Time.deltaTime;
@@ -31,7 +31,7 @@ public class GiantKnife : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         Player player = collision.GetComponent<Player>();
         if (player != null)

@@ -15,8 +15,10 @@ public class Enemy : MonoBehaviour, IPooledObject
     [SerializeField] float damage;
     [SerializeField] float speed;
     [SerializeField] float maxHP;
+    [SerializeField] float enrageCooldown;
     protected float currentHP;
     [SerializeField] string _name;
+    [SerializeField] GameObject fireBallPrefab;
 
     [Header("UI")]
     [SerializeField] HealthBar enemyHpBar;
@@ -202,8 +204,22 @@ public class Enemy : MonoBehaviour, IPooledObject
         isEnraged = true;
         speed *= 2f;
         damage *= 1.75f;
+        StartCoroutine(EnrageAttack());
     }
-
+    IEnumerator EnrageAttack()
+    {
+        Animator animator = gameObject.GetComponent<Animator>();
+        while (true)
+        {
+            animator.SetTrigger("SpecialAtk");
+            yield return new WaitForSeconds(enrageCooldown);
+        }
+    }
+    public void ThrowFireBall()
+    {
+        Vector3 target = new Vector3(player.transform.position.x, player.transform.position.y - 6);
+        Instantiate(fireBallPrefab, target, Quaternion.identity);
+    }
     public void Dies()
     {
         if (GameManager.Kills.ContainsKey(_name))
