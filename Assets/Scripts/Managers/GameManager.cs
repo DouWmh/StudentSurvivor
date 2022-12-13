@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -135,6 +136,21 @@ public class GameManager : MonoBehaviour
     {
         playerScript.LevelUpSkill(lvlOption4.text);
         FinishLeveling();
+    }
+    public void OnResumeClick()
+    {
+        Time.timeScale = 1f;
+        isPaused = false;
+        pauseScreen.SetActive(false);
+        cam.UnPauseGame();
+    }
+    public void OnMainMenuClick()
+    {
+        Time.timeScale = 1f;
+        isPaused = false;
+        pauseScreen.SetActive(false);
+        cam.UnPauseGame();
+        SceneManager.LoadScene(0);
     }
     private void FinishLeveling()
     {

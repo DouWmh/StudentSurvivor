@@ -1155,7 +1155,7 @@ PrefabInstance:
       objectReference: {fileID: -1255610681, guid: fe6e9720d55d99b4c9a60f3436820845, type: 3}
     - target: {fileID: 4128616797511165766, guid: 33e285cf858591b47afb0f3c0e8937d4, type: 3}
       propertyPath: m_text
-      value: Quit
+      value: MainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 4128616797511165766, guid: 33e285cf858591b47afb0f3c0e8937d4, type: 3}
       propertyPath: m_fontSize
@@ -3341,6 +3341,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1255610681, guid: fe6e9720d55d99b4c9a60f3436820845, type: 3}
+    - target: {fileID: 4128616797511165766, guid: 33e285cf858591b47afb0f3c0e8937d4, type: 3}
+      propertyPath: m_text
+      value: Retry
+      objectReference: {fileID: 0}
     - target: {fileID: 4128616797511165766, guid: 33e285cf858591b47afb0f3c0e8937d4, type: 3}
       propertyPath: m_fontSize
       value: 72
