@@ -241,12 +241,16 @@ public class GameManager : MonoBehaviour
             Spawn("Zombie", 15, isChasing: false);
         }
 
+
         yield return new WaitForSeconds(6f);
-
-
+        if (!TitleManager.saveData.levelUnlocked)
+        {
+            StageUnlock();
+        }
+        yield return new WaitForSeconds(8f);
+        Spawn("Slime", 1);
         Spawn("Giant", 6);
 
-        yield return new WaitForSeconds(6f);
         // 1 minute
         Spawn("Merman", 30, isChasing: false);
         yield return new WaitForSeconds(6f);
