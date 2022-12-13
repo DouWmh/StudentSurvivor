@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6698619213165934300}
   - component: {fileID: 7605560387954560073}
   - component: {fileID: 2976300340046254391}
+  - component: {fileID: 4221055606393792724}
   m_Layer: 0
   m_Name: Slash
   m_TagString: Untagged
@@ -121,3 +122,19 @@ MonoBehaviour:
   speed: 4
   damage: 8
   timerDestroy: 4
+--- !u!58 &4221055606393792724
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6448816691698731807}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.35
