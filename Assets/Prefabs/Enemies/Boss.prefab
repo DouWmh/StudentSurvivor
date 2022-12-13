@@ -296,6 +296,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8318586251581794958, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
+      propertyPath: slashPrefab
+      value: 
+      objectReference: {fileID: 6448816691698731807, guid: 2fd12758b7b10274a8c6caeaaa085593, type: 3}
+    - target: {fileID: 8318586251581794958, guid: 6415a3270f793ef489f296db4ebfd9d3, type: 3}
       propertyPath: enrageCooldown
       value: 8
       objectReference: {fileID: 0}

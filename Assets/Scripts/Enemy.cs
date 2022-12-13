@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour, IPooledObject
     protected float currentHP;
     [SerializeField] string _name;
     [SerializeField] GameObject fireBallPrefab;
+    [SerializeField] GameObject slashPrefab;
 
     [Header("UI")]
     [SerializeField] HealthBar enemyHpBar;
@@ -74,7 +75,9 @@ public class Enemy : MonoBehaviour, IPooledObject
             fadeMat.SetFloat("_Fader", GetHPRatio());
             fadeMat.SetFloat("_Enrage", 0);
             StartCoroutine(BossEncounter());
+            StartCoroutine(AttackPattern());
         }
+        
     }
 
     IEnumerator BossEncounter()
@@ -204,22 +207,27 @@ public class Enemy : MonoBehaviour, IPooledObject
         isEnraged = true;
         speed *= 2f;
         damage *= 1.75f;
-        StartCoroutine(EnrageAttack());
     }
-    IEnumerator EnrageAttack()
+    IEnumerator AttackPattern()
     {
         Animator animator = gameObject.GetComponent<Animator>();
         while (true)
         {
-            animator.SetTrigger("SpecialAtk");
             yield return new WaitForSeconds(enrageCooldown);
-            //yield return new WaitForSeconds(enrageCooldown / 2);
+            if (isEnraged)
+                animator.SetTrigger("SpecialAtk");
+            else
+                animator.SetTrigger("NormalAtk");
         }
     }
     public void ThrowFireBall()
     {
         Vector3 target = new Vector3(player.transform.position.x, player.transform.position.y - 6);
         Instantiate(fireBallPrefab, target, Quaternion.identity);
+    }
+    public void ThrowSlash()
+    {
+        Instantiate(slashPrefab, transform.position, Quaternion.identity);
     }
     public void Dies()
     {
